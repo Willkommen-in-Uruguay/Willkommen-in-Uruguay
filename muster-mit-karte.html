@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Willkommen in Uruguay!</title>
+
+<link rel="stylesheet" href="karte/leaflet.css">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f6f8;
+    color:#222;
+    line-height:1.5;
+}
+
+.hero{
+    background:
+    linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+    url('bilder/strand-stein.jpg'); /* HIER IST DEIN NEUER LOKALER PFAD */
+    background-size:cover;
+    background-position:center;
+    color:#fff;
+    text-align:center;
+    padding:140px 20px;
+}
+
+.hero h1{font-size:3rem;margin:0;}
+.hero p{max-width:740px;margin:18px auto 0;font-size:1.2rem;opacity:0.95;}
+
+nav{
+    background:#07153a;
+    padding:14px;
+    text-align:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    margin:0 14px;
+    font-weight:bold;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:28px 18px;
+}
+
+.card{
+    background:#fff;
+    padding:30px;
+    border-radius:16px;
+    margin:24px 0;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+h2{margin-top:0;}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px;
+}
+
+.service{
+    border:1px solid #e1e1e1;
+    padding:16px;
+    border-radius:12px;
+    background:#fff;
+}
+
+#map{
+    height:620px;
+    border-radius:14px;
+    position:relative;
+}
+
+/* FOOTER */
+footer{
+    background:#07153a;
+    color:#fff;
+    text-align:center;
+    padding:34px;
+    margin-top:40px;
+    font-size:0.95rem;
+}
+
+/* LABEL */
+.location-label{
+    background:rgba(255,255,255,.95);
+    border-radius:6px;
+    padding:4px 8px;
+    font-size:12px;
+    font-weight:bold;
+    color:#003b5c;
+    box-shadow:0 2px 6px rgba(0,0,0,.15);
+}
+
+/* CONTACT */
+.contact-box{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.contact-item{
+    background:#f8fafc;
+    border:1px solid #e3e8ee;
+    padding:16px;
+    border-radius:12px;
+}
+
+.contact-item a{
+    color:#07153a;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* CTA */
+.cta{
+    background:#e9f6ff;
+    border:1px solid #cfe9ff;
+    padding:14px 16px;
+    border-radius:12px;
+    margin-bottom:18px;
+    font-weight:bold;
+    color:#0b3a5a;
+}
+
+/* =========================
+   📱 MOBILE MAP FIX
+========================= */
+
+@media (max-width: 768px){
+
+    #map{
+        height:420px;
+    }
+
+    .map-overlay{
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        background:rgba(255,255,255,0.85);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+        font-weight:bold;
+        color:#0b3a5a;
+        border-radius:14px;
+        z-index:500;
+        cursor:pointer;
+        padding:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+    <h1>Ankommen in Uruguay!</h1>
+    <p>
+       <p>
+    Wir unterstützen deutschsprachige Menschen beim Ankommen und Leben in Uruguay –
+    persönlich, unkompliziert und vor Ort.
+</p>.
+    </p>
+</section>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="#karte">Region</a>
+    <a href="#kontakt">Kontakt</a>
+</nav>
+
+<div class="container">
+
+    <section class="card">
+        <h2>Leere Karte</h2>
+        <p>Dies ist eine leere Karte für neuen Inhalt.</p>
+    </section>
+
+    <section id="karte" class="card">
+        <h2>Region</h2>
+
+        <div class="cta">
+            <div class="cta">
+        Unser Schwerpunkt liegt in diesen Regionen des Departements Maldonado.
+    </div>
+        </div>
+
+        <div style="position:relative;">
+            <div id="map"></div>
+
+            <div class="map-overlay" id="mapOverlay">
+                Karte antippen, um sie zu aktivieren
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- KONTAKT-BOX: Sauber nach unten verschoben -->
+    <section id="kontakt" class="card">
+        <h2>Kontakt</h2>
+        <p style="margin-top:0;">
+            Bei Fragen oder wenn Unterstützung benötigt wird, sind wir über folgende Wege erreichbar:
+        </p>
+        <div class="contact-box">
+            <div class="contact-item">
+                📧 E-Mail:<br>
+                <a href="mailto:info@willkommen-in-uruguay.de">info@willkommen-in-uruguay.de</a>
+            </div>
+            <div class="contact-item">
+                💬 XMPP:<br>
+                <a href="xmpp:kontakt@chat.willkommen-in-uruguay.de">kontakt@chat.willkommen-in-uruguay.de</a>
+            </div>
+            <div class="contact-item">
+                📱 WhatsApp:<br>
+                <a href="https://wa.me/59891201354" target="_blank">WhatsApp-Kontakt</a>
+            </div>
+        </div>
+    </section>
+
+<footer>
+   Persönliche Unterstützung im Bundesland Maldonado
+    <br><br>
+    z.B. Solís • Piriápolis • Punta Negra • Punta Ballena • Punta del Este • José Ignacio • Pueblo Edén
+    
+</footer>
+
+<script src="karte/leaflet.js"></script>
+
+<script>
+const map = L.map('map').setView([-34.7,-55.1], 10);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'© OpenStreetMap'
+}).addTo(map);
+
+const polygonPoints = [
+    [-34.7772085,-55.3909894],
+    [-34.8691346,-55.2750200],
+    [-34.8923148,-55.2154918],
+    [-34.8798087,-55.0502291],
+    [-34.9519180,-54.9349206],
+    [-34.8405009,-54.6385047],
+    [-34.7900,-54.7200],
+    [-34.7400,-54.7900],
+    [-34.7000,-54.8600],
+    [-34.6650,-54.9300],
+    [-34.6350,-55.0000],
+    [-34.6023140,-55.0747280],
+    [-34.6150,-55.1500],
+    [-34.6400,-55.2200],
+    [-34.6800,-55.2900],
+    [-34.7250,-55.3400],
+    [-34.7600,-55.3750]
+];
+
+L.polygon(polygonPoints,{
+    color:"#0077aa",
+    weight:2,
+    opacity:0.75,
+    fillColor:"#4db8ff",
+    fillOpacity:0.05
+}).addTo(map);
+
+L.polyline([
+    [-34.7772085,-55.3909894],
+    [-34.8691346,-55.2750200],
+    [-34.8923148,-55.2154918],
+    [-34.8798087,-55.0502291],
+    [-34.9519180,-54.9349206],
+    [-34.8405009,-54.6385047]
+],{
+    color:"#005580",
+    weight:4,
+    opacity:0.95
+}).addTo(map);
+
+const places = [
+    ["Solís",-34.7772085,-55.3909894],
+    ["Piriápolis",-34.8691346,-55.2750200],
+    ["Punta Negra",-34.8923148,-55.2154918],
+    ["Punta Ballena",-34.8798087,-55.0502291],
+    ["Punta del Este",-34.9519180,-54.9349206],
+    ["José Ignacio",-34.8405009,-54.6385047],
+    ["Pueblo Edén",-34.6023140,-55.0747280]
+];
+
+places.forEach(p => {
+    L.circleMarker([p[1], p[2]],{
+        radius:5,
+        color:"#005580",
+        fillColor:"#005580",
+        fillOpacity:1,
+        weight:1
+    }).addTo(map);
+
+    L.marker([p[1], p[2]],{opacity:0})
+    .bindTooltip(p[0],{
+        permanent:true,
+        direction:"top",
+        className:"location-label",
+        offset:[0,-8]
+    })
+    .addTo(map);
+});
+
+// MOBILE MAP CONTROL
+map.scrollWheelZoom.disable();
+
+const overlay = document.getElementById("mapOverlay");
+
+overlay.addEventListener("click", function(){
+    map.scrollWheelZoom.enable();
+    overlay.style.display = "none";
+});
+
+map.fitBounds(polygonPoints,{
+    padding:[50,50]
+});
+</script>
+
+</body>
+</html>
